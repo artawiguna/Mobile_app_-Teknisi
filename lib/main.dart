@@ -11,10 +11,11 @@ import 'Transaksi.dart' as transaksi;
 
 void main() {
   runApp(new MaterialApp(
-    title: "OTC",
+    title: "Teknisi",
     home: new Halsatu(),
   ));
 }
+
 class Halsatu extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -22,7 +23,7 @@ class Halsatu extends StatefulWidget {
 
 class _HomeState extends State<Halsatu> with SingleTickerProviderStateMixin {
   TabController controller;
-  int bottomNavigationBarIndex =0;
+  int bottomNavigationBarIndex = 0;
 
   final _widgetOptions = [
     home.Home(),
@@ -31,61 +32,54 @@ class _HomeState extends State<Halsatu> with SingleTickerProviderStateMixin {
     akun.Akun(),
   ];
   //@override
- // void initState() {
- //   controller = new TabController(vsync: this, length: 4);
- //   super.initState();
+  // void initState() {
+  //   controller = new TabController(vsync: this, length: 4);
+  //   super.initState();
   //}
 
- // @override
+  // @override
 //  void dispose() {
- //   controller.dispose();
- //   super.dispose();
+  //   controller.dispose();
+  //   super.dispose();
 //  }
-  
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        leading: Icon(Icons.home),
-        title: new Text("Home"),
-      ),
-      body:  _widgetOptions.elementAt(bottomNavigationBarIndex),
-
-     bottomNavigationBar: BottomNavigationBar(
-       
-       items: [
-         BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        title: Text('Home'),
-        backgroundColor: Colors.blue
-         ),
-         BottomNavigationBarItem(
-        icon: Icon(Icons.compare_arrows),
-        title: Text('Transaction'),
-        backgroundColor: Colors.blue
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.chat),
-        title: Text('Chat'),
-        backgroundColor: Colors.blue
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.person),
-        title: Text('Profile'),
-        backgroundColor: Colors.blue
-      ),
-       ],
-       type: BottomNavigationBarType.fixed,
+        appBar: new AppBar(
+          leading: Icon(Icons.home),
+          title: new Text("Home"),
+        ),
+        body: _widgetOptions.elementAt(bottomNavigationBarIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                title: Text('Home'),
+                backgroundColor: Colors.blue),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.compare_arrows),
+                title: Text('Transaction'),
+                backgroundColor: Colors.blue),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.chat),
+                title: Text('Chat'),
+                backgroundColor: Colors.blue),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                title: Text('Profile'),
+                backgroundColor: Colors.blue),
+          ],
+          type: BottomNavigationBarType.fixed,
           currentIndex: bottomNavigationBarIndex,
           fixedColor: Colors.blueAccent,
           onTap: _onItemTapped,
-       )
-    );
+        ));
   }
-   void _onItemTapped(int index) {
+
+  void _onItemTapped(int index) {
     setState(() {
       bottomNavigationBarIndex = index;
     });
   }
 }
-
