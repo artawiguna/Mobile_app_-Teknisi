@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import './home.dart' as home;
 import './order.dart' as order;
 import './konsultasi.dart' as konsul;
@@ -9,7 +11,8 @@ import './chat.dart' as chat;
 import './akun.dart' as akun;
 import 'Transaksi.dart' as transaksi;
 
-void main() {
+void main() async {
+  await Firebase.initializeApp();
   runApp(new MaterialApp(
     title: "Teknisi",
     home: new Halsatu(),

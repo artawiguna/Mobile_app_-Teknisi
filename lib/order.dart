@@ -1,15 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import './main.dart' as HomeUtama;
 import 'teknisi_datang.dart' as teknisidatang;
 import 'package:flutter/scheduler.dart' show timeDilation;
 
-void main() {
+void main() async {
+  await Firebase.initializeApp();
   runApp(Order());
 }
 
 class Order extends StatelessWidget {
+  final TextEditingController masalahControler = TextEditingController();
+  final TextEditingController lokasiControler = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference order = firestore.collection("order");
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.blue,
@@ -18,24 +25,21 @@ class Order extends StatelessWidget {
         ),
       ),
       body: new Container(
-        
         padding: EdgeInsets.all(20.0),
         child: Column(
-         //child: new _MyStatefulWidgetState(
-           // teks: "komputer mati"
+          //child: new _MyStatefulWidgetState(
+          // teks: "komputer mati"
           //),
           children: [
             TextField(
+              controller: masalahControler,
               decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Masukkan Permaslahan'
-              ),
+                  border: InputBorder.none, hintText: 'Masukkan Permaslahan'),
             ),
             TextField(
+              controller: lokasiControler,
               decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Masukkan Lokasi'
-              ),
+                  border: InputBorder.none, hintText: 'Masukkan Lokasi'),
             ),
             RaisedButton(
               child: Text(
@@ -44,7 +48,16 @@ class Order extends StatelessWidget {
               ),
               color: Colors.blue,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>teknisidatang.TeknisiDatang()));
+                order.add({
+                  'masalah': masalahControler.text,
+                  'lokasi': lokasiControler.text,
+                });
+                masalahControler.text = '';
+                lokasiControler.text = '';
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => teknisidatang.TeknisiDatang()));
               },
             ),
           ],
@@ -55,8 +68,8 @@ class Order extends StatelessWidget {
 }
 
 //class Cardorder extends StatelessWidget {
-  //Cardorder({this.teks, });
-  /*final TextField teks;
+//Cardorder({this.teks, });
+/*final TextField teks;
 
   @override
   Widget build(BuildContext context) {
