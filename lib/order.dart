@@ -54,10 +54,10 @@ class Order extends StatelessWidget {
                 });
                 masalahControler.text = '';
                 lokasiControler.text = '';
-                Navigator.push(
+                /*Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => teknisidatang.TeknisiDatang()));
+                        builder: (context) => teknisidatang.TeknisiDatang()));*/
               },
             ),
           ],
