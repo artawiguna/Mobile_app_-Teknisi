@@ -16,7 +16,7 @@ class Order extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    CollectionReference order = firestore.collection("order");
+    CollectionReference order = firestore.collection('order');
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.blue,
